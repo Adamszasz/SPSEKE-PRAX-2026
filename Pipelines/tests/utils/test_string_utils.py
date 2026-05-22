@@ -1,4 +1,5 @@
 
+
     
 from Pipelines.utils.string_utils import concat_strings
 from Pipelines.utils.string_utils import clean_to_title_case
@@ -50,3 +51,22 @@ class TestCleanToTitleCase:
     def test_string_with_email(self):
         result = clean_to_title_case(" EmAil: peter@Skola.sk  ")
         assert result == "Email: peter@skola.sk"
+from Pipelines.utils.string_utils import is_valid_email
+
+class TestIsValidEmail:
+    
+    def test_valid_email(self):
+        result = is_valid_email("user@example.com")
+        assert result == True
+    
+    def test_missing_symbol(self):
+        result = is_valid_email("userexample.com")
+        assert result == False
+    
+    def test_missing_domain_extension(self):
+        result = is_valid_email("user@example")
+        assert result == False
+    
+    def test_domain(self):
+        result = is_valid_email("user@.com")
+        assert result == False
