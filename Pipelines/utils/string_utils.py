@@ -16,7 +16,14 @@ def concat_strings(str1: str, str2: str) -> str|None:
     return str1 + str2
 
 def clean_to_title_case(text: str) -> str|None:
-    
+    """Cleans a string by stripping leading and trailing whitespace and converting it to title case.
+
+    Args:
+        text (str): string to clean
+
+    Returns:
+        str|None: cleaned string
+    """
     if not isinstance(text, str):
         return None
     
