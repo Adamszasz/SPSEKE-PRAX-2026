@@ -1,4 +1,5 @@
 
+import re
 import string
 
 def concat_strings(str1: str, str2: str) -> str|None:
@@ -18,6 +19,9 @@ def concat_strings(str1: str, str2: str) -> str|None:
 def clean_to_title_case(text: str) -> str|None:
     """Cleans a string by stripping leading and trailing whitespace and converting it to title case.
 
+    If the string contains an email address, it will be converted to lowercase. If the string contains a word with numbers, it will be left as is.
+    Otherwise, it will be converted to title case.
+
     Args:
         text (str): string to clean
 
@@ -28,4 +32,20 @@ def clean_to_title_case(text: str) -> str|None:
         return None
     
     cleaned_text = text.strip()
-    return string.capwords(cleaned_text)
+    
+    email_pattern = r"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    
+    words = cleaned_text.split()
+    processed_words = []
+
+    for word in words:
+        if re.match(email_pattern, word):
+            processed_words.append(word.lower())
+    
+        elif any(char.isdigit() for char in word):
+            processed_words.append(word)
+
+        else:
+            processed_words.append(string.capwords(word))
+
+    return " ".join(processed_words)

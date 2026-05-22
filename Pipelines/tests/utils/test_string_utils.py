@@ -42,3 +42,11 @@ class TestCleanToTitleCase:
     def test_mixed_case(self):
         result = clean_to_title_case("  it's a beautiful day  ")
         assert result == "It's A Beautiful Day"
+
+    def test_word_with_numbers(self):
+        result = clean_to_title_case(" 1A version 2 m2m  ")
+        assert result == "1A Version 2 m2m"
+
+    def test_string_with_email(self):
+        result = clean_to_title_case(" EmAil: peter@Skola.sk  ")
+        assert result == "Email: peter@skola.sk"
