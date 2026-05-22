@@ -30,3 +30,19 @@ class TestRoundToWholeHour:
         result = round_to_whole_hour(dt)
         assert result.date() == dt.date()
         assert result.hour == 23
+
+    def test_invalid_input_string(self):
+        with pytest.raises(TypeError, match="Expected datetime object, got str instead"):
+            round_to_whole_hour("2024-06-15 14:30:00")
+
+    def test_invalid_input_int(self):
+        with pytest.raises(TypeError, match="Expected datetime object, got int instead"):
+            round_to_whole_hour(12345)
+
+    def test_invalid_input_none(self):
+        with pytest.raises(TypeError, match="Expected datetime object, got NoneType instead"):
+            round_to_whole_hour(None)
+
+    def test_invalid_input_dict(self):
+        with pytest.raises(TypeError, match="Expected datetime object, got dict instead"):
+            round_to_whole_hour({"year": 2024, "month": 6})
