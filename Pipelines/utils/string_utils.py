@@ -1,5 +1,7 @@
 import re
 
+EMAIL_REGEX = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+
 def concat_strings(str1: str, str2: str) -> str|None:
     """Concatenates two strings.
 
@@ -15,9 +17,6 @@ def concat_strings(str1: str, str2: str) -> str|None:
     return str1 + str2
 
 
-email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-
-
 def is_valid_email(email: str) -> bool:
     """Validates email format using regex pattern.
 
@@ -29,4 +28,4 @@ def is_valid_email(email: str) -> bool:
     """
     if not isinstance(email, str):
         return False
-    return bool(re.fullmatch(email_regex, email))
+    return bool(re.fullmatch(EMAIL_REGEX, email))
