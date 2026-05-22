@@ -3,6 +3,7 @@
     
 from Pipelines.utils.string_utils import concat_strings
 from Pipelines.utils.string_utils import clean_to_title_case
+from Pipelines.utils.string_utils import is_valid_email
 
 class TestConcatStrings:
     
@@ -51,7 +52,7 @@ class TestCleanToTitleCase:
     def test_string_with_email(self):
         result = clean_to_title_case(" EmAil: peter@Skola.sk  ")
         assert result == "Email: peter@skola.sk"
-from Pipelines.utils.string_utils import is_valid_email
+
 
 class TestIsValidEmail:
     

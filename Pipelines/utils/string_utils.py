@@ -1,5 +1,6 @@
 import re
 import string
+
 EMAIL_REGEX = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
 def concat_strings(str1: str, str2: str) -> str|None:
@@ -33,13 +34,12 @@ def clean_to_title_case(text: str) -> str|None:
     
     cleaned_text = text.strip()
     
-    email_pattern = r"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     
     words = cleaned_text.split()
     processed_words = []
 
     for word in words:
-        if re.match(email_pattern, word):
+        if re.match(EMAIL_REGEX, word):
             processed_words.append(word.lower())
     
         elif any(char.isdigit() for char in word):
